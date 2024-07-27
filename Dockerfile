@@ -16,6 +16,10 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8000
 
+# Create a script to initialize the admin user
+
+RUN python manage.py createsuperuser
+
 # Make migrations and migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
 
