@@ -23,6 +23,6 @@ RUN python manage.py createsuperuser
 # Make migrations and migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
 
-# Command to run the server
+# Command to run the server new
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
