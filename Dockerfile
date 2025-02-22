@@ -16,13 +16,11 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Create a script to initialize the admin user
-
-RUN python manage.py createsuperuser
-
 # Make migrations and migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
 
-# Command to run the server new
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Create a script to initialize the admin user
+COPY create_superuser.py /app/create_superuser.py
 
+# Command to run the server and initialize the admin user
+CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000 & python create_superuser.py"]
